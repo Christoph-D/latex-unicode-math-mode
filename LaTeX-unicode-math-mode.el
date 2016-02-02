@@ -147,7 +147,6 @@
     (when current-input-method
       (deactivate-input-method))))
 
-;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-math-mode)
 ;;(add-hook 'minibuffer-setup-hook (lambda () (activate-input-method 'math-symbols-tex)))
 
 (provide 'LaTeX-unicode-math-mode)
