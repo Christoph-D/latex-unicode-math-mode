@@ -99,23 +99,18 @@
  ("\\PPP" "𝓟")
  )
 
-(defun math-symbols-convert-region (begin end)
-  "Convert REGION to use unicode math symbols."
-  (interactive "*r") (robin-convert-region begin end "math-symbols-tex"))
-
 (register-input-method
  "math-symbols-tex" "math" 'robin-use-package "" "Unicode math symbols")
 
+(defun math-symbols-convert-region (begin end)
+  "Convert REGION to use unicode math symbols."
+  (interactive "*r")
+  (robin-convert-region begin end "math-symbols-tex"))
+
 (defun LaTeX-unicode-math-set-input-method ()
-  (if (texmathp)
+  (if (texmathp) ;; If the point is inside a math environment
       (activate-input-method 'math-symbols-tex)
     (inactivate-input-method)))
-
-(defun LaTeX-unicode-math-toggle-input-method ()
-  (interactive)
-  (if current-input-method
-      (deactivate-input-method)
-    (activate-input-method 'math-symbols-tex)))
 
 (define-minor-mode LaTeX-unicode-math-mode
   "Dynamically enable the unicode math input method in LaTeX math mode."
@@ -123,10 +118,7 @@
   (if LaTeX-unicode-math-mode
       (progn
         ;; This mode is incompatible with LaTeX-unicode-global-mode.
-        (when LaTeX-unicode-global-mode
-          ;; Fake disable this mode to avoid endless recursion.
-          (let ((LaTeX-unicode-math-mode nil))
-            (LaTeX-unicode-global-mode -1)))
+        (LaTeX-unicode-global-mode -1)
         (add-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method nil t))
     (progn
       (remove-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method t)
@@ -139,14 +131,9 @@
   (if LaTeX-unicode-global-mode
       (progn
         ;; This mode is incompatible with LaTeX-unicode-math-mode.
-        (when LaTeX-unicode-math-mode
-          ;; Fake disable this mode to avoid endless recursion.
-          (let ((LaTeX-unicode-global-mode nil))
-            (LaTeX-unicode-math-mode -1)))
+        (LaTeX-unicode-math-mode -1)
         (activate-input-method 'math-symbols-tex))
     (when current-input-method
       (deactivate-input-method))))
-
-;;(add-hook 'minibuffer-setup-hook (lambda () (activate-input-method 'math-symbols-tex)))
 
 (provide 'LaTeX-unicode-math-mode)
