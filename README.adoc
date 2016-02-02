@@ -11,7 +11,7 @@ file make to LaTeX aware of the unicode characters.
 
 Add this to your emacs configuration somewhere *after* loading auctex:
 ----
-(add-to-list 'load-path "path/to/LaTeX-unicode-math-mode/")
+(add-to-list 'load-path "path/to/LaTeX-unicode-math-mode")
 (require 'LaTeX-unicode-math-mode)
 
 ;; Enable LaTeX-unicode-math-mode automatically for all LaTeX files.
