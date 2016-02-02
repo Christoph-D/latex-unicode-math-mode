@@ -122,6 +122,11 @@
   nil nil nil
   (if LaTeX-unicode-math-mode
       (progn
+        ;; This mode is incompatible with LaTeX-unicode-global-mode.
+        (when LaTeX-unicode-global-mode
+          ;; Fake disable this mode to avoid endless recursion.
+          (let ((LaTeX-unicode-math-mode nil))
+            (LaTeX-unicode-global-mode -1)))
         (add-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method nil t))
     (progn
       (remove-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method t)
@@ -132,10 +137,15 @@
   "Enable the unicode math input method everywhere in the buffer."
   nil nil nil
   (if LaTeX-unicode-global-mode
-      (activate-input-method 'math-symbols-tex)
-    (progn
-      (when current-input-method
-        (deactivate-input-method)))))
+      (progn
+        ;; This mode is incompatible with LaTeX-unicode-math-mode.
+        (when LaTeX-unicode-math-mode
+          ;; Fake disable this mode to avoid endless recursion.
+          (let ((LaTeX-unicode-global-mode nil))
+            (LaTeX-unicode-math-mode -1)))
+        (activate-input-method 'math-symbols-tex))
+    (when current-input-method
+      (deactivate-input-method))))
 
 ;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-math-mode)
 ;;(add-hook 'minibuffer-setup-hook (lambda () (activate-input-method 'math-symbols-tex)))
