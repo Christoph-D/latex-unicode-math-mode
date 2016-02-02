@@ -30,6 +30,11 @@ other.
 
 Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 
+== Additional Features
+
+`M-x LaTeX-unicode-math-convert-region` converts all LaTeX macros in
+the active region to their unicode equivalents.
+
 == Bugs
 
 Due to the implementation, this minor mode will probably break your
