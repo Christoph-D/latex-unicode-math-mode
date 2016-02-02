@@ -114,6 +114,11 @@
 (register-input-method
  "math-symbols-tex" "math" 'robin-use-package "" "Unicode math symbols")
 
+(defun LaTeX-unicode-math-convert-buffer ()
+  "Convert buffer to use unicode math symbols."
+  (interactive "*")
+  (robin-convert-buffer "math-symbols-tex"))
+
 (defun LaTeX-unicode-math-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
   (interactive "*r")
