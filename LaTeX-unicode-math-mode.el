@@ -114,15 +114,27 @@
 (register-input-method
  "math-symbols-tex" "math" 'robin-use-package "" "Unicode math symbols")
 
+
 (defun LaTeX-unicode-math-convert-buffer ()
   "Convert buffer to use unicode math symbols."
   (interactive "*")
   (robin-convert-buffer "math-symbols-tex"))
 
+(defun LaTeX-unicode-math-invert-buffer ()
+  "Convert all unicode math symbols in the buffer back to LaTeX macros."
+  (interactive "*")
+  (robin-invert-buffer "math-symbols-tex"))
+
 (defun LaTeX-unicode-math-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
   (interactive "*r")
   (robin-convert-region begin end "math-symbols-tex"))
+
+(defun LaTeX-unicode-math-invert-region (begin end)
+  "Convert all unicode math symbols in REGION back to LaTeX macros."
+  (interactive "*r")
+  (robin-invert-region begin end "math-symbols-tex"))
+
 
 (defun LaTeX-unicode-math-set-input-method ()
   (if (texmathp) ;; If the point is inside a math environment
