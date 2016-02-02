@@ -25,8 +25,8 @@ Add this to your emacs configuration somewhere *after* loading auctex:
 ----
 
 Note that `LaTeX-unicode-math-mode` and `LaTeX-unicode-global-mode`
-are mutually exclusive.  Only one of them can be active for one
-buffer.
+are mutually exclusive.  Enabling one will automatically disable the
+other.
 
 Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 
