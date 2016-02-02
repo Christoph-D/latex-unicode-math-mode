@@ -119,7 +119,7 @@
 
 (define-minor-mode LaTeX-unicode-math-mode
   "Dynamically enable the unicode math input method in LaTeX math mode."
-  nil nil nil
+  nil "𝓜" nil
   (if LaTeX-unicode-math-mode
       (progn
         ;; This mode is incompatible with LaTeX-unicode-global-mode.
@@ -135,7 +135,7 @@
 
 (define-minor-mode LaTeX-unicode-global-mode
   "Enable the unicode math input method everywhere in the buffer."
-  nil nil nil
+  nil "𝓖" nil
   (if LaTeX-unicode-global-mode
       (progn
         ;; This mode is incompatible with LaTeX-unicode-math-mode.
