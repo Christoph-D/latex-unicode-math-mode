@@ -35,12 +35,8 @@ Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 `M-x LaTeX-unicode-math-convert-region` converts all LaTeX macros in
 the active region to their unicode equivalents.
 
-`M-x LaTeX-unicode-math-invert-region` reverts all unicode characters
-in the active region to their LaTeX equivalents.
-
-`M-x LaTeX-unicode-math-convert-buffer` and `M-x
-LaTeX-unicode-math-invert-buffer` are similar, but apply to the whole
-buffer.
+`M-x LaTeX-unicode-math-convert-buffer` is the same, but applies to
+the whole buffer.
 
 == Bugs
 
@@ -48,3 +44,9 @@ Due to the implementation, this minor mode will probably break your
 input method.  If you do not know what an input method is or if you
 write in English or in another European language, chances are you are
 not using one.
+
+Inverting a region/buffer (turning unicode back to LaTeX) does not
+work because `robin-invert-region` only works when using single
+characters like `?φ` instead of `"φ"` as replacements in the robin
+package.  Maybe define a second robin package only for inverting a
+region?
