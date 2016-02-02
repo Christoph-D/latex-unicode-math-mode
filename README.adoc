@@ -1,12 +1,13 @@
 = LaTeX-unicode-math-mode
 
 This is an emacs minor mode for entering unicode math symbols in
-LaTeX.  It automatically replaces inputs like `\phi` with `φ` and
-`\in` with `∈`.  These replacements happen inside of math environments
-or everywhere, depending on the configuration.
+LaTeX-mode (provided by auctex).  It automatically replaces inputs
+like `\phi` with `φ` and `\in` with `∈`.  These replacements happen
+inside of math environments or everywhere, depending on the
+configuration.
 
-You probably want `\usepackage{unicode-math-mode}` to make LaTeX aware
-of the unicode characters.
+You probably want to add `\usepackage{unicode-math-mode}` to your tex
+file make to LaTeX aware of the unicode characters.
 
 Add this to your emacs configuration somewhere *after* loading auctex:
 ----
@@ -18,10 +19,14 @@ Add this to your emacs configuration somewhere *after* loading auctex:
 (add-hook 'LaTeX-mode-hook 'LaTeX-unicode-math-mode)
 
 ;; Enable LaTeX-unicode-global-mode automatically for all LaTeX files.
-;; This converts LaTeX to unicode everywhere in the buffer.
-;; Don't activate both this and LaTeX-unicode-math-mode at the same time.
+;; This converts LaTeX to unicode everwhere, not only in math
+;; environments.
 ;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-global-mode)
 ----
+
+Note that `LaTeX-unicode-math-mode` and `LaTeX-unicode-global-mode`
+are mutually exclusive.  Only one of them can be active for one
+buffer.
 
 Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 
@@ -29,5 +34,5 @@ Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 
 Due to the implementation, this minor mode will probably break your
 input method.  If you do not know what an input method is or if you
-only write in English or in other European languages, chances are you
-are not using one.
+write in English or in another European language, chances are you are
+not using one.
