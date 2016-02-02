@@ -98,6 +98,17 @@
  ("\\MMM" "𝓜")
  ("\\NNN" "𝓝")
  ("\\PPP" "𝓟")
+
+ ("^2" "²")
+ ("^3" "³")
+ ("^i" "ⁱ")
+ ("^j" "ʲ")
+ ("^k" "ᵏ")
+ ("^l" "ˡ")
+ ("^m" "ᵐ")
+ ("^n" "ⁿ")
+
+ ;; Subscripts don't look good, so we omit them for now.
  )
 
 (register-input-method
