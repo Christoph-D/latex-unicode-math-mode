@@ -12,6 +12,7 @@ pdflatex aware of the unicode characters.  For XeTeX, this may be
 different.
 
 Add this to your emacs configuration somewhere *after* loading auctex:
+[source,elisp]
 ----
 (add-to-list 'load-path "path/to/LaTeX-unicode-math-mode")
 (require 'LaTeX-unicode-math-mode)
