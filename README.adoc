@@ -38,37 +38,13 @@ Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 Say you type this:
 [source,latex]
 ----
-In the following definitions, let $P = (V,E,V_\even,\omega)$ be a
-parity game and $i$ be a player.
-
-\begin{definition}[Strategy]
-  A strategy for player~$i$ is a function $\pi: V^*V_i \to V$ such that
-  $(\seq v, \pi(\seq v)) \in E$ for all paths $\seq v \in V^*V_i$.
-\end{definition}
-\begin{definition}[$\pi$-Conforming Path]
-  We say that a path $\seq v = (v_1,v_2,\ldots) \in V^+ \cup V^\omega$
-  (finite or infinite) is \emph{$\pi$-conforming} to a strategy $\pi$
-  if $v_{k+1} = \pi(v_1,\ldots,v_k)$ holds for all its proper initial
-  segments $(v_1,\ldots,v_k) \in V^*V_i$.
-\end{definition}
+\pi(v_1,\ldots,v_n) ∈ A \cup B
 ----
 
 As you type, `LaTeX-unicode-math-mode` turns it into this:
 [source,latex]
 ----
-In the following definitions, let $P = (V,E,V_\even,ω)$ be a
-parity game and $i$ be a player.
-
-\begin{definition}[Strategy]
-  A strategy for player~$i$ is a function $π: V^*V_i \to V$ such that
-  $(\seq v, π(\seq v)) ∈ E$ for all paths $\seq v ∈ V^*V_i$.
-\end{definition}
-\begin{definition}[$π$-Conforming Path]
-  We say that a path $\seq v = (v_1,v_2,…) ∈ V^+ ∪ V^ω$
-  (finite or infinite) is \emph{$π$-conforming} to a strategy $π$
-  if $v_{k+1} = π(v_1,…,v_k)$ holds for all its proper initial
-  segments $(v_1,…,v_k) ∈ V^*V_i$.
-\end{definition}
+π(v_1,…,v_n) ∈ A ∪ B
 ----
 
 There will be no change in the compiled pdf (don't forget to add
