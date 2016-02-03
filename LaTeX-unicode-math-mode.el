@@ -113,8 +113,22 @@
  ;; Subscripts don't look good, so we omit them for now.
  )
 
+;; robin-invert-region only works with single letter definitions.
+;; Some of the replacements in "math-symbols-tex" are strings.  We
+;; redefine these here as single letters to make robin-invert-region
+;; happy.
+(robin-define-package
+ "math-symbols-tex-invert-helpers"
+ "Unicode math symbols (helpers)"
+ ("\\cup" ?∪)
+ ("\\cap" ?∩)
+ ("\\in" ?∈)
+ )
+
 (register-input-method
  "math-symbols-tex" "math" 'robin-use-package "" "Unicode math symbols")
+(register-input-method
+ "math-symbols-tex-invert-helpers" "math" 'robin-use-package "" "Unicode math symbols (helpers)")
 
 
 (defun LaTeX-unicode-math-convert-buffer ()
@@ -122,10 +136,22 @@
   (interactive "*")
   (robin-convert-buffer "math-symbols-tex"))
 
+(defun LaTeX-unicode-math-invert-buffer ()
+  "Convert all unicode math symbols in the buffer back to LaTeX macros."
+  (interactive "*")
+  (robin-invert-buffer "math-symbols-tex")
+  (robin-invert-buffer "math-symbols-tex-invert-helpers"))
+
 (defun LaTeX-unicode-math-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
   (interactive "*r")
   (robin-convert-region begin end "math-symbols-tex"))
+
+(defun LaTeX-unicode-math-invert-region (begin end)
+  "Convert all unicode math symbols in REGION back to LaTeX macros."
+  (interactive "*r")
+  (robin-invert-region begin end "math-symbols-tex")
+  (robin-invert-region begin end "math-symbols-tex-invert-helpers"))
 
 
 (defun LaTeX-unicode-math-set-input-method ()

@@ -40,15 +40,13 @@ the active region to their unicode equivalents.
 `M-x LaTeX-unicode-math-convert-buffer` is the same, but applies to
 the whole buffer.
 
+`M-x LaTeX-unicode-math-invert-region` and `M-x
+LaTeX-unicode-math-invert-buffer` revert all unicode symbols in the
+current region/buffer back to their LaTeX equivalents.
+
 == Bugs
 
 Due to the implementation, this minor mode will probably break your
 input method.  If you do not know what an input method is or if you
 write in English or in another European language, chances are you are
 not using one.
-
-Inverting a region/buffer (turning unicode back to LaTeX) does not
-work because `robin-invert-region` only works when using single
-characters like `?φ` instead of `"φ"` as replacements in the robin
-package.  Maybe define a second robin package only for inverting a
-region?
