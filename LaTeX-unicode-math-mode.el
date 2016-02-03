@@ -22,6 +22,7 @@
  ("\\exists" ?∃)
  ("\\nexists" ?∄)
  ("\\rightarrow" ?→)
+ ("\\to " "→ ")
  ("\\leftrightarrow" ?↔)
  ("\\Rightarrow" ?⇒)
  ("\\Leftrightarrow" ?⇔)
@@ -120,6 +121,7 @@
 (robin-define-package
  "math-symbols-tex-invert-helpers"
  "Unicode math symbols (helpers)"
+ ("\\to" ?→)
  ("\\cup" ?∪)
  ("\\cap" ?∩)
  ("\\in" ?∈)
@@ -139,8 +141,8 @@
 (defun LaTeX-unicode-math-invert-buffer ()
   "Convert all unicode math symbols in the buffer back to LaTeX macros."
   (interactive "*")
-  (robin-invert-buffer "math-symbols-tex")
-  (robin-invert-buffer "math-symbols-tex-invert-helpers"))
+  (robin-invert-buffer "math-symbols-tex-invert-helpers")
+  (robin-invert-buffer "math-symbols-tex"))
 
 (defun LaTeX-unicode-math-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
@@ -150,8 +152,8 @@
 (defun LaTeX-unicode-math-invert-region (begin end)
   "Convert all unicode math symbols in REGION back to LaTeX macros."
   (interactive "*r")
-  (robin-invert-region begin end "math-symbols-tex")
-  (robin-invert-region begin end "math-symbols-tex-invert-helpers"))
+  (robin-invert-region begin end "math-symbols-tex-invert-helpers")
+  (robin-invert-region begin end "math-symbols-tex"))
 
 
 (defun LaTeX-unicode-math-set-input-method ()
