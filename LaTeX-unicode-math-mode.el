@@ -46,18 +46,44 @@
  ("\\forall" ?∀)
  ("\\exists" ?∃)
  ("\\nexists" ?∄)
- ("\\rightarrow" ?→)
+
+ ("\\gets " "← ")
+ ("<-" "←")
+ ("\\leftarrow" ?←)
+
+ ("<--" "⟵")
+ ("\\longleftarrow" ?⟵)
+
  ("\\to " "→ ")
  ("->" "→")
+ ("\\rightarrow" ?→)
+
+ ("-->" "⟶")
+ ("\\longrightarrow" ?⟶)
+
+ ("<->" "↔")
  ("\\leftrightarrow" ?↔)
+
+ ("<-->" "⟷")
+ ("\\longleftrightarrow" ?⟷)
+
  ("=>" "⇒")
  ("\\Rightarrow" ?⇒)
+
+ ("==>" "⟹")
+ ("\\Longrightarrow" ?⟹)
+
  ("<=>" "⇔")
  ("\\Leftrightarrow" ?⇔)
- ("\\iff" ?⇔)
+
+ ("<==>" "⟺")
+ ("\\Longleftrightarrow" "⟺")
+ ("\\iff" ?⟺)
+
  ("\\mapsto" ?↦)
  ("\\models" ?⊧)
- ("\\nmodels" ?⊭)
+ ("\\nmodels" "⊭")
+ ("\\not\\models" ?⊭)
  ("\\top" ?⊤)
  ("\\bot" ?⊥)
  ("\\Diamond" ?◊)
