@@ -180,16 +180,14 @@
  ("\\YYY" ?𝓨)
  ("\\ZZZ" ?𝓩)
 
- ("^2" ?²)
- ("^3" ?³)
- ("^i" ?ⁱ)
- ("^j" ?ʲ)
- ("^k" ?ᵏ)
- ("^l" ?ˡ)
- ("^m" ?ᵐ)
- ("^n" ?ⁿ)
+ ;; Superscripts conflict with ' in math mode, so we do not use them
+ ;; for now.  In particular, I do not know how to handle $X'²$.  With
+ ;; \DeclareUnicodeCharacter{00B2}{^2} LaTeX gives a "Double
+ ;; superscript" error.  The prime character ' is an active character
+ ;; and uses \futurelet trickery to avoid the double superscript error
+ ;; in $X'^2$.
 
- ;; Subscripts don't look good, so we omit them for now.
+ ;; Subscripts don't look good in my font, so we omit them for now.
  )
 
 ;; robin-invert-region only works with single letter definitions.
