@@ -5,6 +5,22 @@
 \DeclareUnicodeCharacter{2260}{\neq}
 \DeclareUnicodeCharacter{2264}{\leq}
 \DeclareUnicodeCharacter{2265}{\geq}
+\DeclareUnicodeCharacter{227B}{\succ}
+\DeclareUnicodeCharacter{227A}{\prec}
+\DeclareUnicodeCharacter{227D}{\succeq}
+\DeclareUnicodeCharacter{227C}{\preceq}
+
+\DeclareUnicodeCharacter{2248}{\approx}
+\DeclareUnicodeCharacter{2249}{\not\approx}
+\DeclareUnicodeCharacter{2261}{\equiv}
+\DeclareUnicodeCharacter{2262}{\not\equiv}
+\DeclareUnicodeCharacter{2254}{\coloneq}
+\DeclareUnicodeCharacter{2243}{\simeq}
+\DeclareUnicodeCharacter{2244}{\not\simeq}
+\DeclareUnicodeCharacter{2245}{\cong}
+\DeclareUnicodeCharacter{2247}{\ncong}
+\DeclareUnicodeCharacter{223C}{\sim}
+\DeclareUnicodeCharacter{2241}{\nsim}
 
 \DeclareUnicodeCharacter{2227}{\wedge}
 \DeclareUnicodeCharacter{2228}{\vee}
@@ -16,7 +32,6 @@
 \DeclareUnicodeCharacter{2194}{\leftrightarrow}
 \DeclareUnicodeCharacter{21D2}{\Rightarrow}
 \DeclareUnicodeCharacter{21D4}{\Leftrightarrow}
-\DeclareUnicodeCharacter{2261}{\equiv}
 \DeclareUnicodeCharacter{21A6}{\mapsto}
 \DeclareUnicodeCharacter{22A7}{\models}
 \DeclareUnicodeCharacter{22AD}{\not\models}
@@ -26,29 +41,42 @@
 \DeclareUnicodeCharacter{25A1}{\ensuremath{\Box\vphantom{l}}}
 
 % Regular greek letters
-\DeclareUnicodeCharacter{03C6}{\ensuremath{\varphi}}
-\DeclareUnicodeCharacter{03C8}{\ensuremath{\psi}}
-\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
-\DeclareUnicodeCharacter{03BD}{\ensuremath{\nu}}
-\DeclareUnicodeCharacter{03C7}{\ensuremath{\chi}}
-\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
 \DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
 \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
-\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}
 \DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
-\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\varepsilon}}
+\DeclareUnicodeCharacter{03B6}{\ensuremath{\zeta}}
+\DeclareUnicodeCharacter{03B7}{\ensuremath{\eta}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B9}{\ensuremath{\iota}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{03BD}{\ensuremath{\nu}}
+\DeclareUnicodeCharacter{03BE}{\ensuremath{\xi}}
 \DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
 \DeclareUnicodeCharacter{03F1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03C6}{\ensuremath{\varphi}}
+\DeclareUnicodeCharacter{03C7}{\ensuremath{\chi}}
+\DeclareUnicodeCharacter{03C8}{\ensuremath{\psi}}
 \DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
-\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+
 \DeclareUnicodeCharacter{0393}{\ensuremath{\Gamma}}
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{0398}{\ensuremath{\Theta}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{039E}{\ensuremath{\Xi}}
+\DeclareUnicodeCharacter{03A0}{\ensuremath{\Pi}}
+\DeclareUnicodeCharacter{03A3}{\ensuremath{\Sigma}}
 \DeclareUnicodeCharacter{03A6}{\ensuremath{\Phi}}
 \DeclareUnicodeCharacter{03A8}{\ensuremath{\Psi}}
-\DeclareUnicodeCharacter{03A3}{\ensuremath{\Sigma}}
-\DeclareUnicodeCharacter{03A0}{\ensuremath{\Pi}}
 \DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
 
-% Greek italic math letters
+% Greek italic math letters (currently not used by
+% LaTeX-unicode-math-mode.el)
 \DeclareUnicodeCharacter{1D6FC}{\ensuremath{\alpha}}
 \DeclareUnicodeCharacter{1D6FD}{\ensuremath{\beta}}
 \DeclareUnicodeCharacter{1D6FF}{\ensuremath{\delta}}
@@ -63,15 +91,31 @@
 \DeclareUnicodeCharacter{1D6FA}{\ensuremath{\Omega}}
 
 % Set symbols
+\DeclareUnicodeCharacter{2282}{\subset}
+\DeclareUnicodeCharacter{2284}{\nsubset}
 \DeclareUnicodeCharacter{2286}{\subseteq}
 \DeclareUnicodeCharacter{228A}{\subsetneq}
 \DeclareUnicodeCharacter{2288}{\nsubseteq}
+\DeclareUnicodeCharacter{2283}{\supset}
+\DeclareUnicodeCharacter{2287}{\supseteq}
+\DeclareUnicodeCharacter{228B}{\supsetneq}
+\DeclareUnicodeCharacter{2289}{\nsupseteq}
 \DeclareUnicodeCharacter{2216}{\setminus}
 \DeclareUnicodeCharacter{222A}{\cup}
 \DeclareUnicodeCharacter{2229}{\cap}
 \DeclareUnicodeCharacter{2208}{\in}
 \DeclareUnicodeCharacter{2209}{\notin}
 \DeclareUnicodeCharacter{00D7}{\times}
+\DeclareUnicodeCharacter{2294}{\sqcup}
+\DeclareUnicodeCharacter{2293}{\sqcap}
+\DeclareUnicodeCharacter{228F}{\sqsubset}
+\DeclareUnicodeCharacter{2291}{\sqsubseteq}
+\DeclareUnicodeCharacter{22E4}{\sqsubsetneq}
+\DeclareUnicodeCharacter{22E2}{\nsqsubseteq}
+\DeclareUnicodeCharacter{2290}{\sqsupset}
+\DeclareUnicodeCharacter{2292}{\sqsupseteq}
+\DeclareUnicodeCharacter{22E5}{\sqsupsetneq}
+\DeclareUnicodeCharacter{22E3}{\nsqsupseteq}
 
 \DeclareUnicodeCharacter{26AC}{\circ}
 \DeclareUnicodeCharacter{00B7}{\cdot}
@@ -79,6 +123,7 @@
 \DeclareUnicodeCharacter{2296}{\ominus}
 \DeclareUnicodeCharacter{2297}{\otimes}
 \DeclareUnicodeCharacter{2299}{\odot}
+\DeclareUnicodeCharacter{00B1}{\pm}
 
 \DeclareUnicodeCharacter{230A}{\lfloor}
 \DeclareUnicodeCharacter{230B}{\rfloor}
@@ -87,6 +132,8 @@
 
 \DeclareUnicodeCharacter{2205}{\ensuremath{\emptyset}}
 \DeclareUnicodeCharacter{221E}{\ensuremath{\infty}}
+\DeclareUnicodeCharacter{2202}{\partial}
+\DeclareUnicodeCharacter{2207}{\nabla}
 
 \DeclareUnicodeCharacter{2115}{\ensuremath{\mathbb{N}}}
 \DeclareUnicodeCharacter{211A}{\ensuremath{\mathbb{Q}}}
