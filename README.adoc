@@ -71,6 +71,13 @@ parity game and $i$ be a player.
 \end{definition}
 ----
 
+There will be no change in the compiled pdf (don't forget to add
+`\usepackage{unicode-math-mode}` in the preamble).
+
+If you later decide that you do do not like Unicode symbols after all,
+you can easily revert everything back to LaTeX macros, see the next
+section.
+
 == Additional Features
 
 `M-x LaTeX-unicode-math-convert-region` converts all LaTeX macros in
