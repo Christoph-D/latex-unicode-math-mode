@@ -128,7 +128,6 @@
 
  ("\\circ" ?⚬)
  ("\\cdot" ?·)
- ("\\cdots" "\\cdots")
  ("\\oplus" ?⊕)
  ("\\ominus" ?⊖)
  ("\\otimes" ?⊗)
@@ -145,6 +144,8 @@
  ("\\infty" ?∞)
  ("\\partial" ?∂)
  ("\\nabla" ?∇)
+ ("\\cdots" ?⋯)
+ ("\\ldots" ?…)
 
  ("\\N" ?ℕ)
  ("\\Q" ?ℚ)
