@@ -8,10 +8,12 @@ configuration.
 
 If you use pdflatex, you probably want to add
 `\usepackage{unicode-math-mode}` to your tex file in order to make
-pdflatex aware of the unicode characters.  For XeTeX, this may be
-different.
+pdflatex aware of the unicode characters.  Use `M-x
+latex-unicode-save-sty-file` to put this file somewhere where pdflatex
+will find it.  If you update this package, you may need to do this
+again to get the latest sty file.
 
-Add this to your emacs configuration somewhere *after* loading auctex:
+Add this to your emacs configuration somewhere after loading auctex:
 [source,elisp]
 ----
 (add-to-list 'load-path "path/to/latex-unicode-math-mode")

@@ -346,6 +346,22 @@
   (robin-invert-region begin end "math-symbols-tex-invert-helpers")
   (robin-invert-region begin end "math-symbols-tex"))
 
+(defvar latex-unicode-sty-file nil)
+(setq latex-unicode-sty-file
+      (when load-file-name
+        (concat (file-name-directory load-file-name) "unicode-math-mode.sty")))
+
+(defun latex-unicode-save-sty-file ()
+  "Writes unicode-math-mode.sty to the given directory.
+Required to compile .tex files with Unicode symbols with
+pdflatex."
+  (interactive)
+  (let ((dest (concat
+               (read-directory-name
+                "Enter path to save unicode-math-mode.sty: ")
+               "unicode-math-mode.sty")))
+    (copy-file latex-unicode-sty-file dest)
+    (message "Wrote %s" dest)))
 
 (defun latex-unicode-math-set-input-method ()
   (if (texmathp) ;; If the point is inside a math environment
