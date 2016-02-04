@@ -28,8 +28,11 @@
 
  ("\\approx" ?≈)
  ("\\not\\approx" ?≉)
+ ("==" "≡")
  ("\\equiv" ?≡)
+ ("!==" "≢")
  ("\\not\\equiv" ?≢)
+ (":=" "≔")
  ("\\coloneq" ?≔)
  ("\\simeq" ?≃)
  ("\\not\\simeq" ?≄)
