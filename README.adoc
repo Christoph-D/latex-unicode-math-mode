@@ -66,6 +66,36 @@ the whole buffer.
 LaTeX-unicode-math-invert-buffer` revert all unicode symbols in the
 current region/buffer back to their LaTeX equivalents.
 
+== Comparison to the `TeX` input method
+
+Emacs comes with an input method called `TeX`, enabled via `M-x
+set-input-method TeX` (see
+https://github.com/emacs-mirror/emacs/blob/master/lisp/leim/quail/latin-ltx.el).
+This input method is very similar to `LaTeX-unicode-math-mode`.  Pros
+and contras are as follows.
+
+`LaTeX-unicode-math-mode`:
+
+- Pro: Only active in math environments.
+- Pro: Has a .sty file to make pdflatex understand the Unicode symbols.
+- Pro: Has `\mathcal` and `\mathfrak` symbols.
+- Pro: Has shorthand notation for common symbols such as `!=` for
+  `\neq` and `==​>` for `\Longrightarrow`.
+- Pro: Can convert/invert regions and buffers.
+- Contra: Very new and likely to change.
+- Contra: There could be many bugs.
+
+The `TeX` input method:
+
+- Pro: Has been around for a lot longer.
+- Pro: Covers subscripts and superscripts.
+- Pro: Has auto-completion (thanks to quail).
+- Contra: All or nothing: Does not automatically deactivate itself
+  outside of math environments.
+- Contra: Does not work with pdflatex: I do not know how to handle
+  Unicode superscripts in pdflatex combined with the `'` (prime)
+  character, which is active in math mode.
+
 == Bugs
 
 Due to the implementation, this minor mode will probably break your
