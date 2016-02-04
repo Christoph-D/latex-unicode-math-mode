@@ -1,4 +1,4 @@
-= LaTeX-unicode-math-mode
+= latex-unicode-math-mode
 
 This is an emacs minor mode for entering unicode math symbols in
 LaTeX-mode (provided by AUCTeX).  It automatically replaces inputs
@@ -14,25 +14,25 @@ different.
 Add this to your emacs configuration somewhere *after* loading auctex:
 [source,elisp]
 ----
-(add-to-list 'load-path "path/to/LaTeX-unicode-math-mode")
-(require 'LaTeX-unicode-math-mode)
+(add-to-list 'load-path "path/to/latex-unicode-math-mode")
+(require 'latex-unicode-math-mode)
 
-;; Enable LaTeX-unicode-math-mode automatically for all LaTeX files.
+;; Enable latex-unicode-math-mode automatically for all LaTeX files.
 ;; This converts LaTeX to unicode inside math environments.
-(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-math-mode)
+(add-hook 'LaTeX-mode-hook 'latex-unicode-math-mode)
 
 ;; Enable LaTeX-unicode-mode automatically for all LaTeX files.
 ;; This converts LaTeX to unicode everwhere, not only in math
 ;; environments.
-;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-mode)
+;;(add-hook 'LaTeX-mode-hook 'latex-unicode-mode)
 ----
 
-Note that `LaTeX-unicode-math-mode` and `LaTeX-unicode-mode` are
+Note that `latex-unicode-math-mode` and `latex-unicode-mode` are
 mutually exclusive.  Enabling one will automatically disable the
 other.
 
-While `LaTeX-unicode-math-mode` really makes sense only with AUCTeX,
-`LaTeX-unicode-mode` also works fine in other major modes, for example
+While `latex-unicode-math-mode` really makes sense only with AUCTeX,
+`latex-unicode-mode` also works fine in other major modes, for example
 in `org-mode`.
 
 Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
@@ -45,7 +45,7 @@ Say you type this:
 \pi(v_1,\ldots,v_n) ∈ A \cup B
 ----
 
-As you type, `LaTeX-unicode-math-mode` turns it into this:
+As you type, `latex-unicode-math-mode` turns it into this:
 [source,latex]
 ----
 π(v_1,…,v_n) ∈ A ∪ B
@@ -60,14 +60,14 @@ section.
 
 == Additional Features
 
-`M-x LaTeX-unicode-convert-region` converts all LaTeX macros in the
+`M-x latex-unicode-convert-region` converts all LaTeX macros in the
 active region to their unicode equivalents.
 
-`M-x LaTeX-unicode-convert-buffer` is the same, but applies to the
+`M-x latex-unicode-convert-buffer` is the same, but applies to the
 whole buffer.
 
-`M-x LaTeX-unicode-invert-region` and `M-x
-LaTeX-unicode-invert-buffer` revert all unicode symbols in the current
+`M-x latex-unicode-invert-region` and `M-x
+latex-unicode-invert-buffer` revert all unicode symbols in the current
 region/buffer back to their LaTeX equivalents.
 
 == Comparison to the `TeX` input method
@@ -75,10 +75,10 @@ region/buffer back to their LaTeX equivalents.
 Emacs comes with an input method called `TeX`, enabled via `M-x
 set-input-method TeX` (see
 https://github.com/emacs-mirror/emacs/blob/master/lisp/leim/quail/latin-ltx.el).
-This input method is very similar to `LaTeX-unicode-math-mode`.  Pros
+This input method is very similar to `latex-unicode-math-mode`.  Pros
 and contras are as follows.
 
-`LaTeX-unicode-math-mode`:
+`latex-unicode-math-mode`:
 
 - Pro: Only active in math environments.
 - Pro: Has a .sty file to make pdflatex understand the Unicode symbols.

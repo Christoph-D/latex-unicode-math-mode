@@ -3,7 +3,7 @@
  "math-symbols-tex"
  "Unicode math symbols"
 
- ;; Invert (see LaTeX-unicode-math-invert-region) only works with
+ ;; Invert (see latex-unicode-math-invert-region) only works with
  ;; replacements where the right-hand side is a single letter, not a
  ;; one-letter string.  So we use one-letter strings for one-way
  ;; replacements, where invert wouldn't make sense.
@@ -317,56 +317,56 @@
  "math-symbols-tex-invert-helpers" "math" 'robin-use-package "" "Unicode math symbols (helpers)")
 
 
-(defun LaTeX-unicode-convert-buffer ()
+(defun latex-unicode-convert-buffer ()
   "Convert buffer to use unicode math symbols."
   (interactive "*")
   (robin-convert-buffer "math-symbols-tex"))
 
-(defun LaTeX-unicode-invert-buffer ()
+(defun latex-unicode-invert-buffer ()
   "Convert all unicode math symbols in the buffer back to LaTeX macros."
   (interactive "*")
   (robin-invert-buffer "math-symbols-tex-invert-helpers")
   (robin-invert-buffer "math-symbols-tex"))
 
-(defun LaTeX-unicode-convert-region (begin end)
+(defun latex-unicode-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
   (interactive "*r")
   (robin-convert-region begin end "math-symbols-tex"))
 
-(defun LaTeX-unicode-invert-region (begin end)
+(defun latex-unicode-invert-region (begin end)
   "Convert all unicode math symbols in REGION back to LaTeX macros."
   (interactive "*r")
   (robin-invert-region begin end "math-symbols-tex-invert-helpers")
   (robin-invert-region begin end "math-symbols-tex"))
 
 
-(defun LaTeX-unicode-math-set-input-method ()
+(defun latex-unicode-math-set-input-method ()
   (if (texmathp) ;; If the point is inside a math environment
       (activate-input-method 'math-symbols-tex)
     (inactivate-input-method)))
 
-(define-minor-mode LaTeX-unicode-math-mode
+(define-minor-mode latex-unicode-math-mode
   "Dynamically enable the unicode math input method in LaTeX math mode."
   nil "𝓜" nil ;; 𝓜 for Unicode math
-  (if LaTeX-unicode-math-mode
+  (if latex-unicode-math-mode
       (progn
-        ;; This mode is incompatible with LaTeX-unicode--mode.
-        (LaTeX-unicode-mode -1)
-        (add-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method nil t))
+        ;; This mode is incompatible with latex-unicode-mode.
+        (latex-unicode-mode -1)
+        (add-hook 'post-command-hook 'latex-unicode-math-set-input-method nil t))
     (progn
-      (remove-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method t)
+      (remove-hook 'post-command-hook 'latex-unicode-math-set-input-method t)
       (when current-input-method
         (deactivate-input-method)))))
 
-(define-minor-mode LaTeX-unicode-mode
+(define-minor-mode latex-unicode-mode
   "Enable the unicode math input method everywhere in the buffer."
   nil "𝓤" nil ;; 𝓤 for Unicode
-  (if LaTeX-unicode-mode
+  (if latex-unicode-mode
       (progn
-        ;; This mode is incompatible with LaTeX-unicode-math-mode.
-        (LaTeX-unicode-math-mode -1)
+        ;; This mode is incompatible with latex-unicode-math-mode.
+        (latex-unicode-math-mode -1)
         (activate-input-method 'math-symbols-tex))
     (when current-input-method
       (deactivate-input-method))))
 
-(provide 'LaTeX-unicode-math-mode)
+(provide 'latex-unicode-math-mode)
