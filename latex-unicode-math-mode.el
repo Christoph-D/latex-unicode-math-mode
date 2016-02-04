@@ -350,7 +350,7 @@
 (defun latex-unicode-math-set-input-method ()
   (if (texmathp) ;; If the point is inside a math environment
       (activate-input-method 'math-symbols-tex)
-    (inactivate-input-method)))
+    (deactivate-input-method)))
 
 (define-minor-mode latex-unicode-math-mode
   "Dynamically enable the unicode math input method in LaTeX math mode."
