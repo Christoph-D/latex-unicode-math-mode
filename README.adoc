@@ -56,15 +56,15 @@ section.
 
 == Additional Features
 
-`M-x LaTeX-unicode-math-convert-region` converts all LaTeX macros in
-the active region to their unicode equivalents.
+`M-x LaTeX-unicode-convert-region` converts all LaTeX macros in the
+active region to their unicode equivalents.
 
-`M-x LaTeX-unicode-math-convert-buffer` is the same, but applies to
-the whole buffer.
+`M-x LaTeX-unicode-convert-buffer` is the same, but applies to the
+whole buffer.
 
-`M-x LaTeX-unicode-math-invert-region` and `M-x
-LaTeX-unicode-math-invert-buffer` revert all unicode symbols in the
-current region/buffer back to their LaTeX equivalents.
+`M-x LaTeX-unicode-invert-region` and `M-x
+LaTeX-unicode-invert-buffer` revert all unicode symbols in the current
+region/buffer back to their LaTeX equivalents.
 
 == Comparison to the `TeX` input method
 

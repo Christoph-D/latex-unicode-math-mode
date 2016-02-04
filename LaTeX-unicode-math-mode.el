@@ -317,23 +317,23 @@
  "math-symbols-tex-invert-helpers" "math" 'robin-use-package "" "Unicode math symbols (helpers)")
 
 
-(defun LaTeX-unicode-math-convert-buffer ()
+(defun LaTeX-unicode-convert-buffer ()
   "Convert buffer to use unicode math symbols."
   (interactive "*")
   (robin-convert-buffer "math-symbols-tex"))
 
-(defun LaTeX-unicode-math-invert-buffer ()
+(defun LaTeX-unicode-invert-buffer ()
   "Convert all unicode math symbols in the buffer back to LaTeX macros."
   (interactive "*")
   (robin-invert-buffer "math-symbols-tex-invert-helpers")
   (robin-invert-buffer "math-symbols-tex"))
 
-(defun LaTeX-unicode-math-convert-region (begin end)
+(defun LaTeX-unicode-convert-region (begin end)
   "Convert REGION to use unicode math symbols."
   (interactive "*r")
   (robin-convert-region begin end "math-symbols-tex"))
 
-(defun LaTeX-unicode-math-invert-region (begin end)
+(defun LaTeX-unicode-invert-region (begin end)
   "Convert all unicode math symbols in REGION back to LaTeX macros."
   (interactive "*r")
   (robin-invert-region begin end "math-symbols-tex-invert-helpers")
