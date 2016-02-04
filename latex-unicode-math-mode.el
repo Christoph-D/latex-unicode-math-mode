@@ -6,6 +6,8 @@
 ;; Version: 0.1
 ;; URL: https://github.com/Christoph-D/latex-unicode-math-mode
 
+(require 'robin)
+
 (robin-define-package
  "math-symbols-tex"
  "Unicode math symbols"
