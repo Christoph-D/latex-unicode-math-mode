@@ -1,4 +1,11 @@
-;; Define an input method for unicode math symbols.
+;;; latex-unicode-math-mode.el --- Input method for Unicode math symbols -*- Coding: utf-8 -*-
+
+;; Copyright 2016 Christoph Dittmann
+;;
+;; Author: Christoph Dittmann <github@christoph-d.de>
+;; Version: 0.1
+;; URL: https://github.com/Christoph-D/latex-unicode-math-mode
+
 (robin-define-package
  "math-symbols-tex"
  "Unicode math symbols"
@@ -370,3 +377,5 @@
       (deactivate-input-method))))
 
 (provide 'latex-unicode-math-mode)
+
+;;; latex-unicode-math-mode.el ends here
