@@ -342,23 +342,23 @@
 
 
 (defun latex-unicode-convert-buffer ()
-  "Convert buffer to use unicode math symbols."
+  "Convert buffer to use Unicode math symbols."
   (interactive "*")
   (robin-convert-buffer "math-symbols-tex"))
 
 (defun latex-unicode-invert-buffer ()
-  "Convert all unicode math symbols in the buffer back to LaTeX macros."
+  "Convert Unicode in the buffer back to LaTeX macros."
   (interactive "*")
   (robin-invert-buffer "math-symbols-tex-invert-helpers")
   (robin-invert-buffer "math-symbols-tex"))
 
 (defun latex-unicode-convert-region (begin end)
-  "Convert REGION to use unicode math symbols."
+  "Convert region from BEGIN to END to use Unicode math symbols."
   (interactive "*r")
   (robin-convert-region begin end "math-symbols-tex"))
 
 (defun latex-unicode-invert-region (begin end)
-  "Convert all unicode math symbols in REGION back to LaTeX macros."
+  "Convert Unicode in region from BEGIN to END back to LaTeX macros."
   (interactive "*r")
   (robin-invert-region begin end "math-symbols-tex-invert-helpers")
   (robin-invert-region begin end "math-symbols-tex"))
@@ -369,7 +369,7 @@
         (concat (file-name-directory load-file-name) "unicode-math-mode.sty")))
 
 (defun latex-unicode-save-sty-file ()
-  "Writes unicode-math-mode.sty to the given directory.
+  "Write unicode-math-mode.sty to the given directory.
 Required to compile .tex files with Unicode symbols with
 pdflatex."
   (interactive)
@@ -387,7 +387,7 @@ pdflatex."
     (deactivate-input-method)))
 
 (define-minor-mode latex-unicode-math-mode
-  "Dynamically enable the unicode math input method in LaTeX math mode."
+  "Dynamically enable the Unicode math input method in LaTeX math mode."
   nil "𝓜" nil ;; 𝓜 for Unicode math
   (if latex-unicode-math-mode
       (progn
@@ -400,7 +400,7 @@ pdflatex."
         (deactivate-input-method)))))
 
 (define-minor-mode latex-unicode-mode
-  "Enable the unicode math input method everywhere in the buffer."
+  "Enable the Unicode math input method everywhere in the buffer."
   nil "𝓤" nil ;; 𝓤 for Unicode
   (if latex-unicode-mode
       (progn
