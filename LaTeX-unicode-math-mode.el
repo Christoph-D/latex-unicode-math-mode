@@ -347,21 +347,21 @@
 
 (define-minor-mode LaTeX-unicode-math-mode
   "Dynamically enable the unicode math input method in LaTeX math mode."
-  nil "𝓜" nil
+  nil "𝓜" nil ;; 𝓜 for Unicode math
   (if LaTeX-unicode-math-mode
       (progn
-        ;; This mode is incompatible with LaTeX-unicode-global-mode.
-        (LaTeX-unicode-global-mode -1)
+        ;; This mode is incompatible with LaTeX-unicode--mode.
+        (LaTeX-unicode-mode -1)
         (add-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method nil t))
     (progn
       (remove-hook 'post-command-hook 'LaTeX-unicode-math-set-input-method t)
       (when current-input-method
         (deactivate-input-method)))))
 
-(define-minor-mode LaTeX-unicode-global-mode
+(define-minor-mode LaTeX-unicode-mode
   "Enable the unicode math input method everywhere in the buffer."
-  nil "𝓖" nil
-  (if LaTeX-unicode-global-mode
+  nil "𝓤" nil ;; 𝓤 for Unicode
+  (if LaTeX-unicode-mode
       (progn
         ;; This mode is incompatible with LaTeX-unicode-math-mode.
         (LaTeX-unicode-math-mode -1)

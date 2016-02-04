@@ -21,14 +21,14 @@ Add this to your emacs configuration somewhere *after* loading auctex:
 ;; This converts LaTeX to unicode inside math environments.
 (add-hook 'LaTeX-mode-hook 'LaTeX-unicode-math-mode)
 
-;; Enable LaTeX-unicode-global-mode automatically for all LaTeX files.
+;; Enable LaTeX-unicode-mode automatically for all LaTeX files.
 ;; This converts LaTeX to unicode everwhere, not only in math
 ;; environments.
-;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-global-mode)
+;;(add-hook 'LaTeX-mode-hook 'LaTeX-unicode-mode)
 ----
 
-Note that `LaTeX-unicode-math-mode` and `LaTeX-unicode-global-mode`
-are mutually exclusive.  Enabling one will automatically disable the
+Note that `LaTeX-unicode-math-mode` and `LaTeX-unicode-mode` are
+mutually exclusive.  Enabling one will automatically disable the
 other.
 
 Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
