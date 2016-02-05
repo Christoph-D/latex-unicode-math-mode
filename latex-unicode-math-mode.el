@@ -363,22 +363,15 @@
   (robin-invert-region begin end "math-symbols-tex-invert-helpers")
   (robin-invert-region begin end "math-symbols-tex"))
 
-(defvar latex-unicode-sty-file nil)
-(setq latex-unicode-sty-file
-      (when load-file-name
-        (concat (file-name-directory load-file-name) "unicode-math-mode.sty")))
-
-(defun latex-unicode-save-sty-file ()
-  "Write unicode-math-mode.sty to the given directory.
+(defconst latex-unicode-sty-file
+  (concat (file-name-directory load-file-name) "unicode-math-mode.sty"))
+(defun latex-unicode-save-sty-file (dest)
+  "Write the sty file declaring the Unicode symbols to DEST.
 Required to compile .tex files with Unicode symbols with
 pdflatex."
-  (interactive)
-  (let ((dest (concat
-               (read-directory-name
-                "Enter path to save unicode-math-mode.sty: ")
-               "unicode-math-mode.sty")))
-    (copy-file latex-unicode-sty-file dest)
-    (message "Wrote %s" dest)))
+  (interactive "DEnter path to save unicode-math-mode.sty: ")
+  (copy-file latex-unicode-sty-file dest)
+  (message "Wrote %s" (concat dest (file-name-nondirectory latex-unicode-sty-file))))
 
 (defun latex-unicode-math-set-input-method ()
   "Activate the input method iff point is in a math environment."
