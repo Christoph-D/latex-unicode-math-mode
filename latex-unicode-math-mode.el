@@ -379,6 +379,7 @@ pdflatex."
       (activate-input-method 'math-symbols-tex)
     (deactivate-input-method)))
 
+;;;###autoload
 (define-minor-mode latex-unicode-math-mode
   "Dynamically enable the Unicode math input method in LaTeX math mode."
   nil "𝓜" nil ;; 𝓜 for Unicode math
@@ -392,6 +393,7 @@ pdflatex."
       (when current-input-method
         (deactivate-input-method)))))
 
+;;;###autoload
 (define-minor-mode latex-unicode-mode
   "Enable the Unicode math input method everywhere in the buffer."
   nil "𝓤" nil ;; 𝓤 for Unicode
