@@ -16,6 +16,8 @@ again to get the latest sty file.
 
 === From MELPA
 
+image:https://melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA",link="https://melpa.org/\#/latex-unicode-math-mode"] image:https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA Stable",link="https://stable.melpa.org/#/latex-unicode-math-mode"]
+
 The recommended way of installing is from http://melpa.org/[MELPA].
 Call `M-x list-packages` and look for `latex-unicode-math-mode`.
 After installing, add this to your `~/.emacs` file to enable the mode
