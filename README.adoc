@@ -12,12 +12,18 @@ latex-unicode-save-sty-file` to put this file somewhere where pdflatex
 will find it.  If you update this package, you may need to do this
 again to get the latest sty file.
 
-Add this to your emacs configuration somewhere after loading auctex:
+== Installation
+
+=== From MELPA
+
+The recommended way of installing is from http://melpa.org/[MELPA].
+Call `M-x list-packages` and look for `latex-unicode-math-mode`.
+After installing, add this to your `~/.emacs` file to enable the mode
+automatically for all LaTeX files:
+
 [source,elisp]
 ----
-(add-to-list 'load-path "path/to/latex-unicode-math-mode")
 (require 'latex-unicode-math-mode)
-
 ;; Enable latex-unicode-math-mode automatically for all LaTeX files.
 ;; This converts LaTeX to Unicode inside math environments.
 (add-hook 'LaTeX-mode-hook 'latex-unicode-math-mode)
