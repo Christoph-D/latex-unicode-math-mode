@@ -51,7 +51,7 @@ Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
 Say you type this:
 [source,latex]
 ----
-\pi(v_1,\ldots,v_n) ∈ A \cup B
+\pi(v_1,\ldots,v_n) \in A \cup B
 ----
 
 As you type, `latex-unicode-math-mode` turns it into this:
