@@ -23,38 +23,6 @@
 
 (require 'robin)
 
-(defun latex-unicode-math-mode-define-rules (rules)
-  (dolist (rule rules)
-    (robin-modify-package "math-symbols-tex" (car rule) (cadr rule))))
-
-(defun latex-unicode-math-mode-define-letter-rules (long short base-symbol)
-  (dotimes (i 26) ; A-Z
-    (let ((symbol (+ base-symbol i))
-          (letter (string (+ ?A i))))
-      ;; Do not declare unassigned codepoints.
-      (when (not (eq (get-char-code-property symbol 'general-category) 'Cn))
-        (let ((l (replace-regexp-in-string "!" letter long))
-              (s (replace-regexp-in-string "!" letter short)))
-          (robin-modify-package "math-symbols-tex" l (string symbol))
-          (robin-modify-package "math-symbols-tex" s symbol))))))
-
-(defun latex-unicode-math-mode-update-rules ()
-  "(Re-)initialize the robin package."
-  (robin-define-package "math-symbols-tex" "Unicode math symbols")
-  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-generic)
-  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-greek)
-  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-arrows)
-  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-doublestruck)
-  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-extra)
-  (dolist (r latex-unicode-math-mode-letter-rules)
-    (apply 'latex-unicode-math-mode-define-letter-rules r)))
-
-(defun latex-unicode-math-mode-set-variable (var newvalue)
-  "Sets VAR to NEWVALUE and updates the LaTeX unicode math robin package.
-Usually called when a customized variable changes."
-  (set var newvalue)
-  (latex-unicode-math-mode-update-rules))
-
 (defgroup latex-unicode-math nil
   "LaTeX Unicode math symbols
 Invert (see `latex-unicode-math-invert-region') only works with
@@ -317,8 +285,40 @@ Please add your own rules here."
   :initialize 'custom-initialize-default)
 
 
-;; Now that all rules have been declared, initialize the robin
-;; package.
+(defun latex-unicode-math-mode-define-rules (rules)
+  (dolist (rule rules)
+    (robin-modify-package "math-symbols-tex" (car rule) (cadr rule))))
+
+(defun latex-unicode-math-mode-define-letter-rules (long short base-symbol)
+  (dotimes (i 26) ; A-Z
+    (let ((symbol (+ base-symbol i))
+          (letter (string (+ ?A i))))
+      ;; Do not declare unassigned codepoints.
+      (when (not (eq (get-char-code-property symbol 'general-category) 'Cn))
+        (let ((l (replace-regexp-in-string "!" letter long))
+              (s (replace-regexp-in-string "!" letter short)))
+          (robin-modify-package "math-symbols-tex" l (string symbol))
+          (robin-modify-package "math-symbols-tex" s symbol))))))
+
+(defun latex-unicode-math-mode-update-rules ()
+  "(Re-)initialize the robin package."
+  (robin-define-package "math-symbols-tex" "Unicode math symbols")
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-generic)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-greek)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-arrows)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-doublestruck)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-extra)
+  (dolist (r latex-unicode-math-mode-letter-rules)
+    (apply 'latex-unicode-math-mode-define-letter-rules r)))
+
+(defun latex-unicode-math-mode-set-variable (var newvalue)
+  "Sets VAR to NEWVALUE and updates the LaTeX unicode math robin package.
+Usually called when a customized variable changes."
+  (set var newvalue)
+  (latex-unicode-math-mode-update-rules))
+
+;; Now that all rules and initialization methods have been declared,
+;; we create the main robin package.
 (latex-unicode-math-mode-update-rules)
 
 ;; robin-invert-region only works with single letter definitions.
