@@ -175,6 +175,10 @@ generate 26 rules."
     ("\\rfloor" ?⌋)
     ("\\lceil" ?⌈)
     ("\\rceil" ?⌉)
+    ("[|" "⟦")
+    ("\\llbracket" ?⟦)
+    ("|]" "⟧")
+    ("\\rrbracket" ?⟧)
 
     ("\\empty" "∅")
     ("\\emptyset" ?∅)
