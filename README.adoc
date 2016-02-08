@@ -12,6 +12,9 @@ latex-unicode-save-sty-file` to put this file somewhere where pdflatex
 will find it.  If you update this package, you may need to do this
 again to get the latest sty file.
 
+You can customize the keybindings and symbols with `M-x
+customize-group latex-unicode-math`.
+
 == Installation
 
 === From MELPA
