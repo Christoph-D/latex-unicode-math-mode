@@ -31,10 +31,12 @@
   (dotimes (i 26) ; A-Z
     (let ((symbol (+ base-symbol i))
           (letter (string (+ ?A i))))
-      (let ((l (replace-regexp-in-string "!" letter long))
-            (s (replace-regexp-in-string "!" letter short)))
-        (robin-modify-package "math-symbols-tex" l (string symbol))
-        (robin-modify-package "math-symbols-tex" s symbol)))))
+      ;; Do not declare unassigned codepoints.
+      (when (not (eq (get-char-code-property symbol 'general-category) 'Cn))
+        (let ((l (replace-regexp-in-string "!" letter long))
+              (s (replace-regexp-in-string "!" letter short)))
+          (robin-modify-package "math-symbols-tex" l (string symbol))
+          (robin-modify-package "math-symbols-tex" s symbol))))))
 
 (defun latex-unicode-math-mode-update-rules ()
   "(Re-)initialize the robin package."
