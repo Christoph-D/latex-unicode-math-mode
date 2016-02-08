@@ -263,24 +263,28 @@
 (defun latex-unicode-convert-buffer ()
   "Convert buffer to use Unicode math symbols."
   (interactive "*")
-  (robin-convert-buffer "math-symbols-tex"))
+  (save-excursion
+    (robin-convert-buffer "math-symbols-tex")))
 
 (defun latex-unicode-invert-buffer ()
   "Convert Unicode in the buffer back to LaTeX macros."
   (interactive "*")
-  (robin-invert-buffer "math-symbols-tex-invert-helpers")
-  (robin-invert-buffer "math-symbols-tex"))
+  (save-excursion
+    (robin-invert-buffer "math-symbols-tex-invert-helpers")
+    (robin-invert-buffer "math-symbols-tex")))
 
 (defun latex-unicode-convert-region (begin end)
   "Convert region from BEGIN to END to use Unicode math symbols."
   (interactive "*r")
-  (robin-convert-region begin end "math-symbols-tex"))
+  (save-excursion
+    (robin-convert-region begin end "math-symbols-tex")))
 
 (defun latex-unicode-invert-region (begin end)
   "Convert Unicode in region from BEGIN to END back to LaTeX macros."
   (interactive "*r")
-  (robin-invert-region begin end "math-symbols-tex-invert-helpers")
-  (robin-invert-region begin end "math-symbols-tex"))
+  (save-excursion
+    (robin-invert-region begin end "math-symbols-tex-invert-helpers")
+    (robin-invert-region begin end "math-symbols-tex")))
 
 (defconst latex-unicode-sty-file
   (concat (file-name-directory load-file-name) "unicode-math-mode.sty"))
