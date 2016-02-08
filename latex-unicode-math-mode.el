@@ -184,6 +184,7 @@ generate 26 rules."
     ("\\cdots" ?⋯)
     ("..." "…")
     ("\\ldots" ?…)
+    ("\\ell", ?ℓ)
     )
   "Generic rules for `latex-unicode-math-mode'.
 Superscripts are not declared because they conflict with ' in
