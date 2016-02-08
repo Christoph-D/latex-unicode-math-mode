@@ -23,9 +23,7 @@
 
 (require 'robin)
 
-(robin-define-package "math-symbols-tex" "Unicode math symbols")
-
-(defmacro latex-unicode-math-mode-define-rules (&rest rules)
+(defun latex-unicode-math-mode-define-rules (rules)
   (dolist (rule rules)
     (robin-modify-package "math-symbols-tex" (car rule) (cadr rule))))
 
@@ -38,208 +36,290 @@
         (robin-modify-package "math-symbols-tex" l (string symbol))
         (robin-modify-package "math-symbols-tex" s symbol)))))
 
-(latex-unicode-math-mode-define-letter-rules "\\mathfrak{!}" "\\!!" ?𝔄)
+(defun latex-unicode-math-mode-update-rules ()
+  "(Re-)initialize the robin package."
+  (robin-define-package "math-symbols-tex" "Unicode math symbols")
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-generic)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-greek)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-arrows)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-doublestruck)
+  (latex-unicode-math-mode-define-rules latex-unicode-math-mode-rules-extra)
+  (dolist (r latex-unicode-math-mode-letter-rules)
+    (apply 'latex-unicode-math-mode-define-letter-rules r)))
 
-;; Use "MATHEMATICAL BOLD SCRIPT CAPITAL" letters because to me they
-;; look a lot better than the non-bold versions.
-(latex-unicode-math-mode-define-letter-rules "\\mathcal{!}" "\\!!!" ?𝓐)
+(defun latex-unicode-math-mode-set-variable (var newvalue)
+  "Sets VAR to NEWVALUE and updates the LaTeX unicode math robin package.
+Usually called when a customized variable changes."
+  (set var newvalue)
+  (latex-unicode-math-mode-update-rules))
 
-(latex-unicode-math-mode-define-rules
- ;; Invert (see latex-unicode-math-invert-region) only works with
- ;; replacements where the right-hand side is a single letter, not a
- ;; one-letter string.  So we use one-letter strings for one-way
- ;; replacements, where invert wouldn't make sense.
- ("~=" "≠")
- ("!=" "≠")
- ("\\not=" "≠")
- ("\\ne " "≠ ")
- ("\\neq" ?≠)
+(defgroup latex-unicode-math nil
+  "LaTeX Unicode math symbols"
+  :prefix "latex-unicode-math-"
+  :group 'tex)
 
- ("<=" "≤")
- ("\\le " "≤ ")
- ("\\leq" ?≤)
+(defcustom latex-unicode-math-mode-letter-rules
+  '(("\\mathfrak{!}" "\\!!" ?𝔄)
+    ;; Use "MATHEMATICAL BOLD SCRIPT CAPITAL" letters because to me they
+    ;; look a lot better than the non-bold versions.
+    ("\\mathcal{!}" "\\!!!" ?𝓐))
+  "Generate rules for the capital letters A-Z.
+In the long/short form, the exclamation mark ! will be replaced
+by each of the letters A-Z.  Every entry in this list will
+generate 26 rules."
+  :type '(repeat (list :tag "Rule pattern"
+                  (string :tag "Long form")
+                  (string :tag "Short form")
+                  (character :tag "Base symbol")))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
 
- (">=" "≥")
- ("\\ge " "≥ ")
- ("\\geq" ?≥)
+(defcustom latex-unicode-math-mode-rules-generic
+  '(
+    ;; Invert (see latex-unicode-math-invert-region) only works with
+    ;; replacements where the right-hand side is a single letter, not a
+    ;; one-letter string.  So we use one-letter strings for one-way
+    ;; replacements, where invert wouldn't make sense.
+    ("~=" "≠")
+    ("!=" "≠")
+    ("\\not=" "≠")
+    ("\\ne " "≠ ")
+    ("\\neq" ?≠)
 
- ("\\succ" ?≻)
- ("\\prec" ?≺)
- ("\\succeq" ?≽)
- ("\\preceq" ?≼)
+    ("<=" "≤")
+    ("\\le " "≤ ")
+    ("\\leq" ?≤)
 
- ("\\approx" ?≈)
- ("\\not\\approx" ?≉)
- ("==" "≡")
- ("\\equiv" ?≡)
- ("!==" "≢")
- ("\\not\\equiv" ?≢)
- (":=" "≔")
- ("\\coloneq" ?≔)
- ("\\simeq" ?≃)
- ("\\not\\simeq" ?≄)
- ("\\cong" ?≅)
- ("\\not\\cong" "≇")
- ("\\ncong" ?≇)
- ("\\sim" ?∼)
- ("\\not\\sim" "≁")
- ("\\nsim" ?≁)
+    (">=" "≥")
+    ("\\ge " "≥ ")
+    ("\\geq" ?≥)
 
- ("\\wedge" ?∧)
- ("\\vee" ?∨)
- ("\\neg" ?¬)
- ("\\forall" ?∀)
- ("\\exists" ?∃)
- ("\\nexists" ?∄)
+    ("\\succ" ?≻)
+    ("\\prec" ?≺)
+    ("\\succeq" ?≽)
+    ("\\preceq" ?≼)
 
- ("\\gets " "← ")
- ("<-" "←")
- ("\\leftarrow" ?←)
+    ("\\approx" ?≈)
+    ("\\not\\approx" ?≉)
+    ("==" "≡")
+    ("\\equiv" ?≡)
+    ("!==" "≢")
+    ("\\not\\equiv" ?≢)
+    (":=" "≔")
+    ("\\coloneq" ?≔)
+    ("\\simeq" ?≃)
+    ("\\not\\simeq" ?≄)
+    ("\\cong" ?≅)
+    ("\\not\\cong" "≇")
+    ("\\ncong" ?≇)
+    ("\\sim" ?∼)
+    ("\\not\\sim" "≁")
+    ("\\nsim" ?≁)
 
- ("<--" "⟵")
- ("\\longleftarrow" ?⟵)
+    ("\\wedge" ?∧)
+    ("\\vee" ?∨)
+    ("\\neg" ?¬)
+    ("\\forall" ?∀)
+    ("\\exists" ?∃)
+    ("\\nexists" ?∄)
 
- ("\\to " "→ ")
- ("->" "→")
- ("\\rightarrow" ?→)
+    ("\\models" ?⊧)
+    ("\\nmodels" "⊭")
+    ("\\not\\models" ?⊭)
+    ("\\top" ?⊤)
+    ("\\bot" ?⊥)
+    ("\\Diamond" ?◊)
+    ("\\Box" ?□)
 
- ("-->" "⟶")
- ("\\longrightarrow" ?⟶)
+    ("\\subset" ?⊂)
+    ("\\nsubset" ?⊄)
+    ("\\subseteq" ?⊆)
+    ("\\subsetneq" ?⊊)
+    ("\\nsubseteq" ?⊈)
+    ("\\supset" ?⊃)
+    ("\\supseteq" ?⊇)
+    ("\\supsetneq" ?⊋)
+    ("\\nsupseteq" ?⊉)
+    ("\\setminus" ?∖)
+    ("\\cup " "∪ ")
+    ("\\cap " "∩ ")
+    ("\\in " "∈ ")
+    ("\\not\\in" "∉")
+    ("\\notin" ?∉)
+    ("\\times" ?×)
+    ("\\ast" ?∗)
+    ("\\sqsubset" ?⊏)
+    ("\\sqsubseteq" ?⊑)
+    ("\\sqsubsetneq" ?⋤)
+    ("\\nsqsubseteq" ?⋢)
+    ("\\sqsupset" ?⊐)
+    ("\\sqsupseteq" ?⊒)
+    ("\\sqsupsetneq" ?⋥)
+    ("\\nsqsupseteq" ?⋣)
+    ("\\sqcup" ?⊔)
+    ("\\sqcap" ?⊓)
 
- ("<->" "↔")
- ("\\leftrightarrow" ?↔)
+    ("\\circ" ?⚬)
+    ("\\cdot" ?·)
+    ("\\oplus" ?⊕)
+    ("\\ominus" ?⊖)
+    ("\\otimes" ?⊗)
+    ("\\odot" ?⊙)
+    ("\\pm" ?±)
 
- ("<-->" "⟷")
- ("\\longleftrightarrow" ?⟷)
+    ("\\lfloor" ?⌊)
+    ("\\rfloor" ?⌋)
+    ("\\lceil" ?⌈)
+    ("\\rceil" ?⌉)
 
- ("=>" "⇒")
- ("\\Rightarrow" ?⇒)
+    ("\\empty" "∅")
+    ("\\emptyset" ?∅)
+    ("\\infty" ?∞)
+    ("\\partial" ?∂)
+    ("\\nabla" ?∇)
+    ("\\cdots" ?⋯)
+    ("..." "…")
+    ("\\ldots" ?…)
 
- ("==>" "⟹")
- ("\\Longrightarrow" ?⟹)
+    ;; Superscripts conflict with ' in math mode, so we do not use them
+    ;; for now.  In particular, I do not know how to handle $X'²$.  With
+    ;; \DeclareUnicodeCharacter{00B2}{^2} LaTeX gives a "Double
+    ;; superscript" error.  The prime character ' is an active character
+    ;; and uses \futurelet trickery to avoid the double superscript error
+    ;; in $X'^2$.
 
- ("<=>" "⇔")
- ("\\Leftrightarrow" ?⇔)
+    ;; Subscripts don't look good in my font, so we omit them for now.
+    )
+  "Generic rules for `latex-unicode-math-mode'."
+  :type '(repeat (list :tag "Rule"
+                       (string :tag "Input")
+                       (choice :tag "Output" string character)))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
 
- ("<==>" "⟺")
- ("\\Longleftrightarrow" "⟺")
- ("\\iff" ?⟺)
+(defcustom latex-unicode-math-mode-rules-greek
+  '(("\\alpha" ?α)
+    ("\\beta" ?β)
+    ("\\gamma" ?γ)
+    ("\\delta" ?δ)
+    ;; Always use \varepsilon.
+    ("\\epsilon" "ε")
+    ("\\varepsilon" ?ε)
+    ("\\zeta" ?ζ)
+    ("\\eta" ?η)
+    ("\\theta" ?θ)
+    ("\\iota" ?ι)
+    ("\\kappa" ?κ)
+    ("\\lambda" ?λ)
+    ("\\mu" ?μ)
+    ("\\nu" ?ν)
+    ("\\xi" ?ξ)
+    ("\\pi" ?π)
+    ("\\rho" ?ϱ)
+    ("\\sigma" ?σ)
+    ("\\tau" ?τ)
+    ("\\phi" ?φ)
+    ("\\chi" ?χ)
+    ("\\psi" ?ψ)
+    ("\\omega" ?ω)
 
- ("\\mapsto" ?↦)
- ("\\models" ?⊧)
- ("\\nmodels" "⊭")
- ("\\not\\models" ?⊭)
- ("\\top" ?⊤)
- ("\\bot" ?⊥)
- ("\\Diamond" ?◊)
- ("\\Box" ?□)
+    ("\\Gamma" ?Γ)
+    ("\\Delta" ?Δ)
+    ("\\Theta" ?Θ)
+    ("\\Lambda" ?Λ)
+    ("\\Xi" ?Ξ)
+    ("\\Pi" ?Π)
+    ("\\Sigma" ?Σ)
+    ("\\Phi" ?Φ)
+    ("\\Psi" ?Ψ)
+    ("\\Omega" ?Ω))
+  "Greek letters for `latex-unicode-math-mode'."
+  :type '(repeat (list :tag "Rule"
+                       (string :tag "Input")
+                       (choice :tag "Output" string character)))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
 
- ("\\alpha" ?α)
- ("\\beta" ?β)
- ("\\gamma" ?γ)
- ("\\delta" ?δ)
- ;; Always use \varepsilon.
- ("\\epsilon" "ε")
- ("\\varepsilon" ?ε)
- ("\\zeta" ?ζ)
- ("\\eta" ?η)
- ("\\theta" ?θ)
- ("\\iota" ?ι)
- ("\\kappa" ?κ)
- ("\\lambda" ?λ)
- ("\\mu" ?μ)
- ("\\nu" ?ν)
- ("\\xi" ?ξ)
- ("\\pi" ?π)
- ("\\rho" ?ϱ)
- ("\\sigma" ?σ)
- ("\\tau" ?τ)
- ("\\phi" ?φ)
- ("\\chi" ?χ)
- ("\\psi" ?ψ)
- ("\\omega" ?ω)
+(defcustom latex-unicode-math-mode-rules-arrows
+  '(("\\gets " "← ")
+    ("<-" "←")
+    ("\\leftarrow" ?←)
 
- ("\\Gamma" ?Γ)
- ("\\Delta" ?Δ)
- ("\\Theta" ?Θ)
- ("\\Lambda" ?Λ)
- ("\\Xi" ?Ξ)
- ("\\Pi" ?Π)
- ("\\Sigma" ?Σ)
- ("\\Phi" ?Φ)
- ("\\Psi" ?Ψ)
- ("\\Omega" ?Ω)
+    ("<--" "⟵")
+    ("\\longleftarrow" ?⟵)
 
- ("\\subset" ?⊂)
- ("\\nsubset" ?⊄)
- ("\\subseteq" ?⊆)
- ("\\subsetneq" ?⊊)
- ("\\nsubseteq" ?⊈)
- ("\\supset" ?⊃)
- ("\\supseteq" ?⊇)
- ("\\supsetneq" ?⊋)
- ("\\nsupseteq" ?⊉)
- ("\\setminus" ?∖)
- ("\\cup " "∪ ")
- ("\\cap " "∩ ")
- ("\\in " "∈ ")
- ("\\not\\in" "∉")
- ("\\notin" ?∉)
- ("\\times" ?×)
- ("\\ast" ?∗)
- ("\\sqsubset" ?⊏)
- ("\\sqsubseteq" ?⊑)
- ("\\sqsubsetneq" ?⋤)
- ("\\nsqsubseteq" ?⋢)
- ("\\sqsupset" ?⊐)
- ("\\sqsupseteq" ?⊒)
- ("\\sqsupsetneq" ?⋥)
- ("\\nsqsupseteq" ?⋣)
- ("\\sqcup" ?⊔)
- ("\\sqcap" ?⊓)
+    ("\\to " "→ ")
+    ("->" "→")
+    ("\\rightarrow" ?→)
 
- ("\\circ" ?⚬)
- ("\\cdot" ?·)
- ("\\oplus" ?⊕)
- ("\\ominus" ?⊖)
- ("\\otimes" ?⊗)
- ("\\odot" ?⊙)
- ("\\pm" ?±)
+    ("-->" "⟶")
+    ("\\longrightarrow" ?⟶)
 
- ("\\lfloor" ?⌊)
- ("\\rfloor" ?⌋)
- ("\\lceil" ?⌈)
- ("\\rceil" ?⌉)
+    ("<->" "↔")
+    ("\\leftrightarrow" ?↔)
 
- ("\\empty" "∅")
- ("\\emptyset" ?∅)
- ("\\infty" ?∞)
- ("\\partial" ?∂)
- ("\\nabla" ?∇)
- ("\\cdots" ?⋯)
- ("..." "…")
- ("\\ldots" ?…)
+    ("<-->" "⟷")
+    ("\\longleftrightarrow" ?⟷)
 
- ("\\mathbb{F}" "𝔽")
- ("\\F" ?𝔽)
- ("\\mathbb{N}" "ℕ")
- ("\\N" ?ℕ)
- ("\\mathbb{Q}" "ℚ")
- ("\\Q" ?ℚ)
- ("\\mathbb{R}" "ℝ")
- ("\\R" ?ℝ)
- ("\\mathbb{Z}" "ℤ")
- ("\\Z" ?ℤ)
+    ("=>" "⇒")
+    ("\\Rightarrow" ?⇒)
 
- ;; Superscripts conflict with ' in math mode, so we do not use them
- ;; for now.  In particular, I do not know how to handle $X'²$.  With
- ;; \DeclareUnicodeCharacter{00B2}{^2} LaTeX gives a "Double
- ;; superscript" error.  The prime character ' is an active character
- ;; and uses \futurelet trickery to avoid the double superscript error
- ;; in $X'^2$.
+    ("==>" "⟹")
+    ("\\Longrightarrow" ?⟹)
 
- ;; Subscripts don't look good in my font, so we omit them for now.
- )
+    ("<=>" "⇔")
+    ("\\Leftrightarrow" ?⇔)
+
+    ("<==>" "⟺")
+    ("\\Longleftrightarrow" "⟺")
+    ("\\iff" ?⟺)
+
+    ("\\mapsto" ?↦)
+    )
+  "Arrows for `latex-unicode-math-mode'."
+  :type '(repeat (list :tag "Rule"
+                       (string :tag "Input")
+                       (choice :tag "Output" string character)))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
+
+(defcustom latex-unicode-math-mode-rules-doublestruck
+  '(("\\mathbb{F}" "𝔽")
+    ("\\F" ?𝔽)
+    ("\\mathbb{N}" "ℕ")
+    ("\\N" ?ℕ)
+    ("\\mathbb{Q}" "ℚ")
+    ("\\Q" ?ℚ)
+    ("\\mathbb{R}" "ℝ")
+    ("\\R" ?ℝ)
+    ("\\mathbb{Z}" "ℤ")
+    ("\\Z" ?ℤ))
+  "Double struck letters for `latex-unicode-math-mode'."
+  :type '(repeat (list :tag "Rule"
+                       (string :tag "Input")
+                       (choice :tag "Output" string character)))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
+
+(defcustom latex-unicode-math-mode-rules-extra
+  nil
+  "Extra rules for `latex-unicode-math-mode'."
+  :type '(repeat (list :tag "Rule"
+                       (string :tag "Input")
+                       (choice :tag "Output" string character)))
+  :group 'latex-unicode-math
+  :set 'latex-unicode-math-mode-set-variable
+  :initialize 'custom-initialize-default)
+
+
+;; Now that all rules have been declared, initialize the robin
+;; package.
+(latex-unicode-math-mode-update-rules)
 
 ;; robin-invert-region only works with single letter definitions.
 ;; Some of the replacements in "math-symbols-tex" are strings.  We
