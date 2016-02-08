@@ -284,15 +284,15 @@ character and not as a string)."
 
 (defcustom latex-unicode-math-mode-rules-doublestruck
   '(("\\mathbb{F}" "𝔽")
-    ("\\F" ?𝔽)
+    ("\\IF" ?𝔽)
     ("\\mathbb{N}" "ℕ")
-    ("\\N" ?ℕ)
+    ("\\IN" ?ℕ)
     ("\\mathbb{Q}" "ℚ")
-    ("\\Q" ?ℚ)
+    ("\\IQ" ?ℚ)
     ("\\mathbb{R}" "ℝ")
-    ("\\R" ?ℝ)
+    ("\\IR" ?ℝ)
     ("\\mathbb{Z}" "ℤ")
-    ("\\Z" ?ℤ))
+    ("\\IZ" ?ℤ))
   "Double struck letters for `latex-unicode-math-mode'."
   :type '(repeat (list :tag "Rule"
                        (string :tag "Input")
