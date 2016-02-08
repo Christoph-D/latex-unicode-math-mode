@@ -56,7 +56,12 @@ Usually called when a customized variable changes."
   (latex-unicode-math-mode-update-rules))
 
 (defgroup latex-unicode-math nil
-  "LaTeX Unicode math symbols"
+  "LaTeX Unicode math symbols
+Invert (see `latex-unicode-math-invert-region') only works with
+replacements where the right-hand side is a single letter, not a
+one-letter string.  So it is recommended to use one-letter
+strings instead of characters for one-way replacements, where
+invert wouldn't make sense."
   :prefix "latex-unicode-math-"
   :group 'tex)
 
@@ -79,10 +84,6 @@ generate 26 rules."
 
 (defcustom latex-unicode-math-mode-rules-generic
   '(
-    ;; Invert (see latex-unicode-math-invert-region) only works with
-    ;; replacements where the right-hand side is a single letter, not a
-    ;; one-letter string.  So we use one-letter strings for one-way
-    ;; replacements, where invert wouldn't make sense.
     ("~=" "≠")
     ("!=" "≠")
     ("\\not=" "≠")
@@ -183,17 +184,16 @@ generate 26 rules."
     ("\\cdots" ?⋯)
     ("..." "…")
     ("\\ldots" ?…)
-
-    ;; Superscripts conflict with ' in math mode, so we do not use them
-    ;; for now.  In particular, I do not know how to handle $X'²$.  With
-    ;; \DeclareUnicodeCharacter{00B2}{^2} LaTeX gives a "Double
-    ;; superscript" error.  The prime character ' is an active character
-    ;; and uses \futurelet trickery to avoid the double superscript error
-    ;; in $X'^2$.
-
-    ;; Subscripts don't look good in my font, so we omit them for now.
     )
-  "Generic rules for `latex-unicode-math-mode'."
+  "Generic rules for `latex-unicode-math-mode'.
+Superscripts are not declared because they conflict with ' in
+math mode.  In particular, I do not know how to handle $X'²$.
+With \\DeclareUnicodeCharacter{00B2}{^2} LaTeX gives a \"Double
+superscript\" error.  The prime character ' is an active
+character and uses \\futurelet trickery to avoid the double
+superscript error in $X'^2$.
+
+Subscripts don't look good in my font, so we omit them for now."
   :type '(repeat (list :tag "Rule"
                        (string :tag "Input")
                        (choice :tag "Output" string character)))
@@ -237,7 +237,10 @@ generate 26 rules."
     ("\\Phi" ?Φ)
     ("\\Psi" ?Ψ)
     ("\\Omega" ?Ω))
-  "Greek letters for `latex-unicode-math-mode'."
+  "Greek letters for `latex-unicode-math-mode'.
+The default is to use \\varepsilon as the target for ε for
+`latex-unicode-math-invert-buffer' (by declaring it as a single
+character and not as a string)."
   :type '(repeat (list :tag "Rule"
                        (string :tag "Input")
                        (choice :tag "Output" string character)))
@@ -249,38 +252,27 @@ generate 26 rules."
   '(("\\gets " "← ")
     ("<-" "←")
     ("\\leftarrow" ?←)
-
     ("<--" "⟵")
     ("\\longleftarrow" ?⟵)
-
     ("\\to " "→ ")
     ("->" "→")
     ("\\rightarrow" ?→)
-
     ("-->" "⟶")
     ("\\longrightarrow" ?⟶)
-
     ("<->" "↔")
     ("\\leftrightarrow" ?↔)
-
     ("<-->" "⟷")
     ("\\longleftrightarrow" ?⟷)
-
     ("=>" "⇒")
     ("\\Rightarrow" ?⇒)
-
     ("==>" "⟹")
     ("\\Longrightarrow" ?⟹)
-
     ("<=>" "⇔")
     ("\\Leftrightarrow" ?⇔)
-
     ("<==>" "⟺")
     ("\\Longleftrightarrow" "⟺")
     ("\\iff" ?⟺)
-
-    ("\\mapsto" ?↦)
-    )
+    ("\\mapsto" ?↦))
   "Arrows for `latex-unicode-math-mode'."
   :type '(repeat (list :tag "Rule"
                        (string :tag "Input")
@@ -310,7 +302,8 @@ generate 26 rules."
 
 (defcustom latex-unicode-math-mode-rules-extra
   nil
-  "Extra rules for `latex-unicode-math-mode'."
+  "Extra rules for `latex-unicode-math-mode'.
+Please add your own rules here."
   :type '(repeat (list :tag "Rule"
                        (string :tag "Input")
                        (choice :tag "Output" string character)))
