@@ -23,10 +23,28 @@
 
 (require 'robin)
 
-(robin-define-package
- "math-symbols-tex"
- "Unicode math symbols"
+(robin-define-package "math-symbols-tex" "Unicode math symbols")
 
+(defmacro latex-unicode-math-mode-define-rules (&rest rules)
+  (dolist (rule rules)
+    (robin-modify-package "math-symbols-tex" (car rule) (cadr rule))))
+
+(defun latex-unicode-math-mode-define-letter-rules (long short base-symbol)
+  (dotimes (i 26) ; A-Z
+    (let ((symbol (+ base-symbol i))
+          (letter (string (+ ?A i))))
+      (let ((l (replace-regexp-in-string "!" letter long))
+            (s (replace-regexp-in-string "!" letter short)))
+        (robin-modify-package "math-symbols-tex" l (string symbol))
+        (robin-modify-package "math-symbols-tex" s symbol)))))
+
+(latex-unicode-math-mode-define-letter-rules "\\mathfrak{!}" "\\!!" ?𝔄)
+
+;; Use "MATHEMATICAL BOLD SCRIPT CAPITAL" letters because to me they
+;; look a lot better than the non-bold versions.
+(latex-unicode-math-mode-define-letter-rules "\\mathcal{!}" "\\!!!" ?𝓐)
+
+(latex-unicode-math-mode-define-rules
  ;; Invert (see latex-unicode-math-invert-region) only works with
  ;; replacements where the right-hand side is a single letter, not a
  ;; one-letter string.  So we use one-letter strings for one-way
@@ -212,105 +230,6 @@
  ("\\R" ?ℝ)
  ("\\mathbb{Z}" "ℤ")
  ("\\Z" ?ℤ)
-
- ;; "MATHEMATICAL FRAKTUR CAPITAL" letters
- ("\\mathfrak{A}" "𝔄")
- ("\\AA" ?𝔄)
- ("\\mathfrak{B}" "𝔅")
- ("\\BB" ?𝔅)
- ("\\mathfrak{D}" "𝔇")
- ("\\DD" ?𝔇)
- ("\\mathfrak{E}" "𝔈")
- ("\\EE" ?𝔈)
- ("\\mathfrak{F}" "𝔉")
- ("\\FF" ?𝔉)
- ("\\mathfrak{G}" "𝔊")
- ("\\GG" ?𝔊)
- ("\\mathfrak{J}" "𝔍")
- ("\\JJ" ?𝔍)
- ("\\mathfrak{K}" "𝔎")
- ("\\KK" ?𝔎)
- ("\\mathfrak{L}" "𝔏")
- ("\\LL" ?𝔏)
- ("\\mathfrak{M}" "𝔐")
- ("\\MM" ?𝔐)
- ("\\mathfrak{N}" "𝔑")
- ("\\NN" ?𝔑)
- ("\\mathfrak{O}" "𝔒")
- ("\\OO" ?𝔒)
- ("\\mathfrak{P}" "𝔓")
- ("\\PP" ?𝔓)
- ("\\mathfrak{Q}" "𝔔")
- ("\\QQ" ?𝔔)
- ("\\mathfrak{S}" "𝔖")
- ("\\SS" ?𝔖)
- ("\\mathfrak{T}" "𝔗")
- ("\\TT" ?𝔗)
- ("\\mathfrak{U}" "𝔘")
- ("\\UU" ?𝔘)
- ("\\mathfrak{V}" "𝔙")
- ("\\VV" ?𝔙)
- ("\\mathfrak{W}" "𝔚")
- ("\\WW" ?𝔚)
- ("\\mathfrak{X}" "𝔛")
- ("\\XX" ?𝔛)
- ("\\mathfrak{Y}" "𝔜")
- ("\\YY" ?𝔜)
-
- ;; The following are "MATHEMATICAL BOLD SCRIPT CAPITAL" letters
- ;; because to me they look a lot better than the non-bold versions.
- ("\\mathcal{A}" "𝓐")
- ("\\AAA" ?𝓐)
- ("\\mathcal{B}" "𝓑")
- ("\\BBB" ?𝓑)
- ("\\mathcal{C}" "𝓒")
- ("\\CCC" ?𝓒)
- ("\\mathcal{D}" "𝓓")
- ("\\DDD" ?𝓓)
- ("\\mathcal{E}" "𝓔")
- ("\\EEE" ?𝓔)
- ("\\mathcal{F}" "𝓕")
- ("\\FFF" ?𝓕)
- ("\\mathcal{G}" "𝓖")
- ("\\GGG" ?𝓖)
- ("\\mathcal{H}" "𝓗")
- ("\\HHH" ?𝓗)
- ("\\mathcal{I}" "𝓘")
- ("\\III" ?𝓘)
- ("\\mathcal{J}" "𝓙")
- ("\\JJJ" ?𝓙)
- ("\\mathcal{K}" "𝓚")
- ("\\KKK" ?𝓚)
- ("\\mathcal{L}" "𝓛")
- ("\\LLL" ?𝓛)
- ("\\mathcal{M}" "𝓜")
- ("\\MMM" ?𝓜)
- ("\\mathcal{N}" "𝓝")
- ("\\NNN" ?𝓝)
- ("\\mathcal{O}" "𝓞")
- ("\\OOO" ?𝓞)
- ("\\mathcal{P}" "𝓟")
- ("\\PPP" ?𝓟)
- ("\\mathcal{Q}" "𝓠")
- ("\\QQQ" ?𝓠)
- ("\\mathcal{R}" "𝓡")
- ("\\RRR" ?𝓡)
- ("\\mathcal{S}" "𝓢")
- ("\\SSS" ?𝓢)
- ("\\mathcal{T}" "𝓣")
- ("\\TTT" ?𝓣)
- ("\\mathcal{U}" "𝓤")
- ("\\UUU" ?𝓤)
- ("\\mathcal{V}" "𝓥")
- ("\\VVV" ?𝓥)
- ("\\mathcal{W}" "𝓦")
- ("\\WWW" ?𝓦)
- ("\\mathcal{X}" "𝓧")
- ("\\XXX" ?𝓧)
- ("\\mathcal{Y}" "𝓨")
- ("\\YYY" ?𝓨)
- ("\\mathcal{Z}" "𝓩")
- ("\\ZZZ" ?𝓩)
 
  ;; Superscripts conflict with ' in math mode, so we do not use them
  ;; for now.  In particular, I do not know how to handle $X'²$.  With
