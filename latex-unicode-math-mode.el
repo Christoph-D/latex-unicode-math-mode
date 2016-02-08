@@ -369,7 +369,7 @@ Please add your own rules here."
 Required to compile .tex files with Unicode symbols with
 pdflatex."
   (interactive "DEnter path to save unicode-math-mode.sty: ")
-  (copy-file latex-unicode-sty-file dest)
+  (copy-file latex-unicode-sty-file dest 1) ; ask user about overwriting
   (message "Wrote %s" (concat dest (file-name-nondirectory latex-unicode-sty-file))))
 
 (defun latex-unicode-math-set-input-method ()
