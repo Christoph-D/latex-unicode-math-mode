@@ -98,6 +98,7 @@ and contras are as follows.
 - Pro: Has shorthand notation for common symbols such as `!=` for
   `\neq` and `==​>` for `\Longrightarrow`.
 - Pro: Can convert/invert regions and buffers.
+- Pro: Customizable (customization group `latex-unicode-math`).
 - Contra: Very new and likely to change.
 - Contra: There could be many bugs.
 
