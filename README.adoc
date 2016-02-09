@@ -1,5 +1,7 @@
 = latex-unicode-math-mode
 
+image:https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master["Build Status",link="https://travis-ci.org/Christoph-D/latex-unicode-math-mode"]
+
 An Emacs minor mode for entering Unicode math symbols in LaTeX-mode
 (provided by AUCTeX).  It automatically replaces inputs like `\phi`
 with `φ` and `\in` with `∈`.  These replacements happen inside of math
