@@ -138,6 +138,7 @@ generate 26 rules."
     ("\\otimes" ?⊗)
     ("\\odot" ?⊙)
     ("\\pm" ?±)
+    ("||" "‖")
 
     ("\\lfloor" ?⌊)
     ("\\rfloor" ?⌋)
