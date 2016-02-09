@@ -1,6 +1,6 @@
 = latex-unicode-math-mode
 
-image:https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master["Build Status",link="https://travis-ci.org/Christoph-D/latex-unicode-math-mode"]
+image:https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master["Build Status",link="https://travis-ci.org/Christoph-D/latex-unicode-math-mode"] image:https://melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA",link="https://melpa.org/\#/latex-unicode-math-mode"] image:https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA Stable",link="https://stable.melpa.org/#/latex-unicode-math-mode"]
 
 An Emacs minor mode for entering Unicode math symbols in LaTeX-mode
 (provided by AUCTeX).  It automatically replaces inputs like `\phi`
@@ -20,8 +20,6 @@ customize-group latex-unicode-math`.
 == Installation
 
 === From MELPA
-
-image:https://melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA",link="https://melpa.org/\#/latex-unicode-math-mode"] image:https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA Stable",link="https://stable.melpa.org/#/latex-unicode-math-mode"]
 
 The recommended way of installing is from http://melpa.org/[MELPA].
 Call `M-x list-packages` and look for `latex-unicode-math-mode`.
