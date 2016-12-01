@@ -47,7 +47,7 @@ While `latex-unicode-math-mode` really makes sense only with AUCTeX,
 `latex-unicode-mode` also works fine in other major modes, for example
 in `org-mode`.
 
-Tested with pdflatex from TeX Live 2015 and GNU Emacs 24.5.1.
+Tested with pdflatex from TeX Live 2016 and GNU Emacs 25.1.1.
 
 == Example
 
