@@ -130,7 +130,7 @@ Subscripts don't look good in my font, so we omit them for now."
     ("\\rho" ?ϱ)
     ("\\sigma" ?σ)
     ("\\tau" ?τ)
-    ("\\phi" ?φ)
+    ("\\phi" ?ϕ)
     ("\\chi" ?χ)
     ("\\psi" ?ψ)
     ("\\omega" ?ω)
