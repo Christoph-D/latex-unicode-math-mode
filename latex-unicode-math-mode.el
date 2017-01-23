@@ -1,6 +1,6 @@
 ;;; latex-unicode-math-mode.el --- Input method for Unicode math symbols -*- Coding: utf-8 -*-
 
-;; Copyright 2016 Christoph Dittmann
+;; Copyright 2016-2017 Christoph Dittmann
 ;;
 ;; Author: Christoph Dittmann <github@christoph-d.de>
 ;; Version: 0.1
