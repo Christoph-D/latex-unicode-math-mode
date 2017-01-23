@@ -3,7 +3,6 @@
 ;; Copyright 2016-2017 Christoph Dittmann
 ;;
 ;; Author: Christoph Dittmann <github@christoph-d.de>
-;; Version: 0.1
 ;; URL: https://github.com/Christoph-D/latex-unicode-math-mode
 
 ;;; Commentary:
