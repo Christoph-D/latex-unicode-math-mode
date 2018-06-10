@@ -15,7 +15,7 @@ while read first rest; do
     # Check and remove the leading question mark.
     [[ $rest =~ ^\\?...$ ]] || continue
     rest=${rest#?}
-    # Remove trailing paranthesis.
+    # Remove trailing parenthesis.
     rest=${rest%)}
     # Clean first.
     first=${first#(\"}
