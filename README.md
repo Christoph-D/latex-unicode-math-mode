@@ -1,6 +1,8 @@
-= latex-unicode-math-mode
+# latex-unicode-math-mode
 
-image:https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master["Build Status",link="https://travis-ci.org/Christoph-D/latex-unicode-math-mode"] image:https://melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA",link="https://melpa.org/\#/latex-unicode-math-mode"] image:https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg[alt="MELPA Stable",link="https://stable.melpa.org/#/latex-unicode-math-mode"]
+[![Build Status](https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master)](https://travis-ci.org/Christoph-D/latex-unicode-math-mode)
+[![MELPA](https://melpa.org/packages/latex-unicode-math-mode-badge.svg)](https://melpa.org/\#/latex-unicode-math-mode)
+[![MELPA Stable](https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg)](https://stable.melpa.org/#/latex-unicode-math-mode)
 
 An Emacs minor mode for entering Unicode math symbols in LaTeX-mode,
 with a sty file to make pdflatex Unicode-aware.  This minor mode
@@ -19,17 +21,16 @@ latest sty file.
 You can customize the keybindings and symbols with `M-x
 customize-group latex-unicode-math`.
 
-== Installation
+## Installation
 
-=== From MELPA
+### From MELPA
 
-The recommended way of installing is from http://melpa.org/[MELPA].
+The recommended way of installing is from [MELPA](http://melpa.org/).
 Call `M-x list-packages` and look for `latex-unicode-math-mode`.
 After installing, add this to your `~/.emacs` file to enable the mode
 automatically for all LaTeX files:
 
-[source,elisp]
-----
+```elisp
 (require 'latex-unicode-math-mode)
 ;; Enable latex-unicode-math-mode automatically for all LaTeX files.
 ;; This converts LaTeX to Unicode inside math environments.
@@ -39,7 +40,7 @@ automatically for all LaTeX files:
 ;; This converts LaTeX to Unicode everwhere, not only in math
 ;; environments.
 ;;(add-hook 'LaTeX-mode-hook 'latex-unicode-mode)
-----
+```
 
 Note that `latex-unicode-math-mode` and `latex-unicode-mode` are
 mutually exclusive.  Enabling one will automatically disable the
@@ -51,19 +52,19 @@ in `org-mode`.
 
 Tested with pdflatex from TeX Live 2016 and GNU Emacs 25.1.1.
 
-== Example
+## Example
 
 Say you type this:
-[source,latex]
-----
+
+```latex
 \pi(v_1,\ldots,v_n) \in A \cup B
-----
+```
 
 As you type, `latex-unicode-math-mode` turns it into this:
-[source,latex]
-----
+
+```latex
 π(v_1,…,v_n) ∈ A ∪ B
-----
+```
 
 There will be no change in the compiled pdf (don't forget to add
 `\usepackage{unicode-math-mode}` in the preamble).
@@ -72,7 +73,7 @@ If you later decide that you do do not like Unicode symbols after all,
 you can easily revert everything back to LaTeX macros, see the next
 section.
 
-== Additional Features
+## Additional Features
 
 `M-x latex-unicode-convert-region` converts all LaTeX macros in the
 active region to their Unicode equivalents.
@@ -84,40 +85,40 @@ whole buffer.
 latex-unicode-invert-buffer` revert all Unicode symbols in the current
 region/buffer back to their LaTeX equivalents.
 
-== Comparison to the `TeX` input method
+## Comparison to the `TeX` input method
 
 Emacs comes with an input method called `TeX`, enabled via `M-x
 set-input-method TeX` (see
 https://github.com/emacs-mirror/emacs/blob/master/lisp/leim/quail/latin-ltx.el).
-This input method is very similar to `latex-unicode-math-mode`.  Pros
-and contras are as follows.
+This input method is very similar to `latex-unicode-math-mode`.  Some
+pros and contras are as follows.
 
 `latex-unicode-math-mode`:
 
-- Pro: Only active in math environments.
-- Pro: Has a .sty file to make pdflatex understand the Unicode symbols.
-- Pro: Has `\mathcal` and `\mathfrak` symbols.
-- Pro: Has shorthand notation for common symbols such as `!=` for
-  `\neq` and `==​>` for `\Longrightarrow`.
-- Pro: Can convert/invert regions and buffers.
-- Pro: Customizable (customization group `latex-unicode-math`).
-- Contra: Very new and likely to change.
-- Contra: There could be many bugs.
+- Pro:
+  - Only active in math environments.
+  - Has a .sty file to make pdflatex understand the Unicode symbols.
+  - Has shorthand notation for common symbols such as `!=` for `\neq`
+    and `==​>` for `\Longrightarrow`.
+  - Can convert/invert regions and buffers.
+  - Customizable (customization group `latex-unicode-math`).
+- Contra:
+  - Very new and likely to change.  Expect rough edges and bugs.
 
 The `TeX` input method:
 
-- Pro: Has been around for a lot longer.
-- Pro: Covers subscripts and superscripts.
-- Pro: Has auto-completion (thanks to quail).
-- Contra: All or nothing: Does not automatically deactivate itself
-  outside of math environments.
-- Contra: Does not work with pdflatex: I do not know how to handle
-  Unicode superscripts in pdflatex combined with the `'` (prime)
-  character, which is active in math mode.
+- Pro:
+  - Covers subscripts and superscripts.
+  - Has auto-completion (thanks to quail).
+- Contra:
+  - All or nothing: Does not automatically deactivate itself outside
+    of math environments.
+  - Does not work with pdflatex: I do not know how to handle Unicode
+    superscripts in pdflatex combined with the `'` (prime) character,
+    which is active in math mode.
 
-== Bugs
+## Bugs
 
 Due to the implementation, this minor mode will probably break your
-input method.  If you do not know what an input method is or if you
-write in English or in another European language, chances are you are
-not using one.
+input method.  If you write in English or in another European
+language, chances are you are not using one.
