@@ -1,6 +1,5 @@
 # latex-unicode-math-mode
 
-[![Build Status](https://travis-ci.org/Christoph-D/latex-unicode-math-mode.svg?branch=master)](https://travis-ci.org/Christoph-D/latex-unicode-math-mode)
 [![MELPA](https://melpa.org/packages/latex-unicode-math-mode-badge.svg)](https://melpa.org/\#/latex-unicode-math-mode)
 [![MELPA Stable](https://stable.melpa.org/packages/latex-unicode-math-mode-badge.svg)](https://stable.melpa.org/#/latex-unicode-math-mode)
 
