@@ -211,8 +211,9 @@ character and not as a string)."
 
 (defcustom latex-unicode-math-mode-rules-emacs
 '(
-    ;; More math symbols, taken from lisp/textmodes/tex-mode.el from
-    ;; emacs25, minus a few symbols that would collide with others.
+    ;; More math symbols, based on lisp/textmodes/tex-mode.el from
+    ;; emacs25, minus a few symbols that would collide with others,
+    ;; plus a few additional symbols.
     ("\\Box" ?□)
     ("\\Bumpeq" ?≎)
     ("\\Cap" ?⋒)
@@ -222,6 +223,8 @@ character and not as a string)."
     ("\\H{o}" ?ő)
     ("\\Im" ?ℑ)
     ("\\Join" ?⋈)
+    ("\\lightning" ?⚡)
+    ("\\Lightning" ?⚡)
     ("\\Ll" ?⋘)
     ("\\Lleftarrow" ?⇚)
     ("\\Lsh" ?↰)
